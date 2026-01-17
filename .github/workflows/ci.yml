@@ -1,9 +1,7 @@
-name: CI - Build Docker Image
+name: CI - Build and Test
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   build:
@@ -15,3 +13,8 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t infraran .
+
+      - name: Run tests
+        run: |
+          pip install -r app/requirements.txt
+          pytest
